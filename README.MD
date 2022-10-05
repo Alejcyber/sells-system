@@ -1,6 +1,42 @@
 
 # Webpages used to guide and tutorials
 
+## How to run the project
+
+You need to install Java JDK 8
+
+## Install Java JDK
+
+Follow the link and download the JDK
+
+https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html
+
+## Deploy in local environment
+
+From a terminal go to your project folder
+
+example: /home/your_user/Documentos/personal-proyects/SellSystem
+
+>cd ${your_project_folder}
+
+To runthe project execute the follow command
+
+- In Linux
+>./mvnw
+- In Windows 
+>mvnw
+
+If this commands not work try this:
+
+Download Apache Maven
+
+https://maven.apache.org/download.cgi
+
+and run this command
+
+>mvn spring-boot:run
+
+
 ### Links to documentation and guides
 The next articles are used as guide
 
