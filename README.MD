@@ -11,6 +11,10 @@ Follow the link and download the JDK
 
 https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html
 
+or try this other link
+
+https://files-cdn.liferay.com/mirrors/download.oracle.com/otn-pub/java/jdk/8u121-b13/
+
 ## Deploy in local environment
 
 From a terminal go to your project folder
