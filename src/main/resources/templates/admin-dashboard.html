@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>ADMIN Dashboard</title>
+	<title>Dashboard</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"></head>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 <body>
 	
-	<div th:replace="fragments/admin-navbar::admin-navbar"></div>
+	<div th:replace="fragments/admin-navbar::admin-navbar-full"></div>
 
 	<div class="card  ml-5 mr-5 mt-5 mb-5" style="width: 18rem;">
 		<div class="card-header">
@@ -26,12 +27,8 @@
 				<span sec:authentication="name"></span>
 			</li>
 			<li class="list-group-item">
-				<span class="badge badge-info">First Name</span>
-				<span sec:authentication="principal.firstName"></span>
-			</li>
-			<li class="list-group-item">
-				<span class="badge badge-info">Last Name</span>
-				<span sec:authentication="principal.lastName"></span>
+				<span class="badge badge-info">Username</span>
+				<span sec:authentication="principal.username"></span>
 			</li>
 			<li class="list-group-item">
 				<span class="badge badge-info">Email</span>

@@ -15,11 +15,7 @@ public class ViewController {
 
     @RequestMapping("/admin-dashboard")
     public String adminDashboard() {
-        return "admin/admin-dashboard";
+        return "admin-dashboard";
     }
 
-    @RequestMapping("/user-dashboard")
-    public String userDashboard() {
-        return "user/user-dashboard";
-    }
 }

@@ -54,4 +54,7 @@ The next articles are used as guide
 * [Spring Security with Thymeleaf](https://www.baeldung.com/spring-security-thymeleaf)
 * [Use th:replace to include HTML fragments in Thymeleaf](https://www.youtube.com/watch?v=-ptZtMsg87U)
 * [Spring Boot JPA + H2 example: Build a CRUD Rest APIs](https://www.bezkoder.com/spring-boot-jpa-h2-example/)
+* [Guide To Running Logic on Startup in Spring](https://www.baeldung.com/running-setup-logic-on-startup-in-spring)
+* [Spring Security - Form Login with Database](https://www.tutorialspoint.com/spring_security/spring_security_form_login_with_database.htm)
+* [Create a Shopping Cart Web Application with Spring Boot, Hibernate](https://o7planning.org/10683/create-a-shopping-cart-web-application-with-spring-boot-hibernate)
 

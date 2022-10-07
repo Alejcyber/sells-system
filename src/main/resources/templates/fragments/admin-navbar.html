@@ -1,17 +1,46 @@
-<div th:fragment="admin-navbar">
+<div th:fragment="admin-navbar-full">
   <nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
-      <a class="navbar-brand" href="#">ADMIN Dashboard</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="admin-dashboard">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="list-user">Users</a>
-          <a class="nav-item nav-link" href="#">Products</a>
-          <a class="nav-item nav-link" href="logout">Logout</a>
-        </div>
-      </div>
-  </nav>
+		<a class="navbar-brand" href="#">ADMIN Dashboard</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		  <div class="navbar-nav">
+			<a class="nav-item nav-link active" href="/admin-dashboard">Home <span class="sr-only">(current)</span></a>
+			<!-- <a class="nav-item nav-link" href="list-user">Users</a> -->
+			<a class="nav-item nav-link" href="/product/seller/list-product">My Products</a>
+			<a class="nav-item nav-link" href="#">My Sells</a>
+			<a class="nav-item nav-link" href="/product/buyer/list-product">Buy Products</a>
+			<a class="nav-item nav-link" href="/product/buyer/my-shopping">My shopping</a>
+		  </div>
+		</div>
+		
+		<a href="/product/buyer/checkout" 
+			class="btn btn-info mr-2">
+			<i class="fas fa-shopping-cart ml-2"></i>
+			My Cart 
+			<span class="badge badge-light" 
+			th:if="${quantity != 0}"
+			th:text="${quantity}"></span>
+		</a>
+		<a href="/logout" class="btn btn-warning" >
+			<i class="fas fa-sign-out-alt ml-2"></i>
+			Logout
+		</a>
+	</nav>
 </div>
-
+<div th:fragment="admin-navbar-basic">
+  <nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">ADMIN Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+     
+    </div>
+	<a href="/logout" class="btn btn-warning" >
+		<i class="fas fa-sign-out-alt ml-2"></i>
+		Return
+	</a>
+</nav>
+</div>
