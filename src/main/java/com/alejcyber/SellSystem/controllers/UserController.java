@@ -56,7 +56,7 @@ public class UserController {
             return "users/add-user";
         }
         Set<Role> roles = new HashSet<>();
-        Role userRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(userRole);
         roles.add(userRole);

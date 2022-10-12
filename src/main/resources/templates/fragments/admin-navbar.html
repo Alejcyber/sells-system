@@ -7,11 +7,25 @@
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 		  <div class="navbar-nav">
 			<a class="nav-item nav-link active" href="/admin-dashboard">Home <span class="sr-only">(current)</span></a>
-			<!-- <a class="nav-item nav-link" href="list-user">Users</a> -->
-			<a class="nav-item nav-link" href="/product/seller/list-product">My Products</a>
-			<a class="nav-item nav-link" href="#">My Sells</a>
-			<a class="nav-item nav-link" href="/product/buyer/list-product">Buy Products</a>
-			<a class="nav-item nav-link" href="/product/buyer/my-shopping">My shopping</a>
+			<a class="nav-item nav-link" sec:authorize="hasAuthority('ROLE_ADMIN')" href="/category/list-category">Categories</a>
+			<div class="dropdown">
+				<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButtonSell" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  Sell
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButtonSell">
+					<a class="dropdown-item" href="/product/seller/list-product">My Products</a>
+					<a class="dropdown-item" href="/product/seller/my-sells">My Sells</a>
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButtonBuy" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				  Buy
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButtonBuy">
+					<a class="dropdown-item" href="/product/buyer/list-product">Buy Products</a>
+					<a class="dropdown-item" href="/product/buyer/my-shopping">My shopping</a>
+				</div>
+			</div>
 		  </div>
 		</div>
 		

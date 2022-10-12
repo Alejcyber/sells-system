@@ -57,4 +57,5 @@ The next articles are used as guide
 * [Guide To Running Logic on Startup in Spring](https://www.baeldung.com/running-setup-logic-on-startup-in-spring)
 * [Spring Security - Form Login with Database](https://www.tutorialspoint.com/spring_security/spring_security_form_login_with_database.htm)
 * [Create a Shopping Cart Web Application with Spring Boot, Hibernate](https://o7planning.org/10683/create-a-shopping-cart-web-application-with-spring-boot-hibernate)
+* [Working with Select and Option in Thymeleaf](https://www.baeldung.com/thymeleaf-select-option)
 

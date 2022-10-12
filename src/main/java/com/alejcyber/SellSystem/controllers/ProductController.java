@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.alejcyber.SellSystem.config.UserDetailsImpl;
+import com.alejcyber.SellSystem.controllers.forms.ProductForm;
+import com.alejcyber.SellSystem.entities.Category;
 import com.alejcyber.SellSystem.entities.Order;
 import com.alejcyber.SellSystem.entities.OrderDetail;
 import com.alejcyber.SellSystem.entities.Product;
 import com.alejcyber.SellSystem.entities.User;
+import com.alejcyber.SellSystem.repositories.CategoryRepository;
 import com.alejcyber.SellSystem.repositories.OrderDetailRepository;
 import com.alejcyber.SellSystem.repositories.OrderRepository;
 import com.alejcyber.SellSystem.repositories.ProductRepository;
@@ -40,18 +43,21 @@ public class ProductController {
     private final UserRepository userRepository;
     private final OrderRepository orderRepository;
     private final OrderDetailRepository orderDetailRepository;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
     public ProductController(
         ProductRepository productRepository, 
         UserRepository userRepository,
         OrderRepository orderRepository,
-        OrderDetailRepository orderDetailRepository
+        OrderDetailRepository orderDetailRepository,
+        CategoryRepository categoryRepository
         ) {
         this.productRepository = productRepository;
         this.userRepository = userRepository;
         this.orderRepository = orderRepository;
         this.orderDetailRepository = orderDetailRepository;
+        this.categoryRepository = categoryRepository;
     }
     
     @GetMapping("/seller/list-product")
@@ -65,16 +71,24 @@ public class ProductController {
     }
     
     @GetMapping("/seller/signup")
-    public String showSignUpForm(Product product) {
+    public String showSignUpForm(ProductForm productForm, Model model) {
+        List<Category> categories = (List<Category>) categoryRepository.findAll();
+        model.addAttribute("categories", categories.size() != 0 ? categories : null);
         return "products/seller/add-product";
     }
     
     @PostMapping("/seller/addproduct")
-    public String addProduct(@Valid Product product, BindingResult result, Model model) {
+    public String addProduct(@Valid ProductForm productForm, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            List<Category> categories = (List<Category>) categoryRepository.findAll();
+            model.addAttribute("categories", categories.size() != 0 ? categories : null);
             return "products/seller/add-product";
         }
-       
+        Product product = new Product();
+        product.setName(productForm.getName());
+        product.setPrice(productForm.getPrice());
+        Category category = categoryRepository.findById(productForm.getCategoryId()).get();
+        product.setCategory(category);
         User seller = getLoggedUser();
         product.setSeller(seller);
         productRepository.save(product);
@@ -83,19 +97,33 @@ public class ProductController {
     
     
     @GetMapping("/seller/edit/{id}")
-    public String showUpdateForm(@PathVariable("id") long id, Model model) {
+    public String showUpdateForm(@PathVariable("id") long id, Model model, ProductForm productForm) {
+        List<Category> categories = (List<Category>) categoryRepository.findAll();
+        model.addAttribute("categories", categories.size() != 0 ? categories : null);
         Product product = productRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));
-        model.addAttribute("product", product);
-        
+        //ProductForm productForm = new ProductForm();
+        productForm.setId(product.getId());
+        productForm.setName(product.getName());
+        productForm.setPrice(product.getPrice());
+        productForm.setCategoryId(product.getCategory().getId());
+        model.addAttribute("productForm", productForm);
+
         return "products/seller/update-product";
     }
     
     @PostMapping("/seller/update/{id}")
-    public String updateProduct(@PathVariable("id") long id, @Valid Product product, BindingResult result, Model model) {
+    public String updateProduct(@PathVariable("id") long id, @Valid ProductForm productForm, BindingResult result, Model model) {
+        Product product = new Product();
+        product.setId(id);
         if (result.hasErrors()) {
-            product.setId(id);
+            List<Category> categories = (List<Category>) categoryRepository.findAll();
+            model.addAttribute("categories", categories.size() != 0 ? categories : null);
             return "products/seller/update-product";
         }
+        product.setName(productForm.getName());
+        product.setPrice(productForm.getPrice());
+        Category category = categoryRepository.findById(productForm.getCategoryId()).get();
+        product.setCategory(category);
         Product oldProductData = productRepository.findById(id).get();
         product.setSeller(oldProductData.getSeller());
         
@@ -110,6 +138,17 @@ public class ProductController {
         productRepository.delete(product);
         
         return "redirect:/product/seller/list-product";
+    }
+
+    @GetMapping("/seller/my-sells")
+    public String mySells(Model model) {
+        User logged = getLoggedUser();
+        List<OrderDetail> orderDetails = orderDetailRepository
+        .findAllByProductSellerId(logged.getId());
+        Double total = orderDetails.stream().mapToDouble(OrderDetail::getAmount).sum();
+        model.addAttribute("orderDetails", orderDetails.size() != 0 ? orderDetails : null);
+        model.addAttribute("total", total);
+        return "products/seller/my-sells";
     }
     
     @GetMapping("/buyer/list-product")

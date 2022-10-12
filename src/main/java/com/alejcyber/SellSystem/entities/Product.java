@@ -3,8 +3,6 @@ package com.alejcyber.SellSystem.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-import com.alejcyber.SellSystem.repositories.CategoryRepository;
-
 @Entity
 @Table(name="`product`", 
 uniqueConstraints = {
