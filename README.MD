@@ -40,6 +40,52 @@ and run this command
 
 >mvn spring-boot:run
 
+###How to use
+You can use the following credentials:
+- user: **user1**, password: **1**
+- user: **user2**, password: **1**
+- user: **user3**, password: **1**
+
+**user1** and **user2** has **USER** role
+**user3** has **ADMIN** role
+
+![Login](/images/sells-system-login.png) 
+
+If you log in with the user **user3** you will have access to the categories module
+
+![Category list](/images/sells-system-admin-category-list.jpg) 
+
+You can create or update a category
+
+![New category](/images/sells-system-new-category.jpg) 
+
+![Update category](/images/sells-system-update-category.jpg) 
+
+In the **Sell** menu you will be able to see your **published products** and your **sells**
+
+![My products](/images/sells-system-seller-my-products.png) 
+
+![My sells](/images/sells-system-seller-my-sells.jpg) 
+
+In the **Buy** menu you can see a menu to **buy products** and another to see the purchases made(**My shopping**)
+
+to add to cart you just need to press the cart button
+
+![Product list](/images/sells-system-buyer-product-list.jpg)
+
+Then, at the top right, you will click on the cart button, this will take you to the checkout page
+
+![Cart Button](/images/my-cart-button.jpg)
+
+after you click the **Done** button, a redirection to **My Shopping** will be made
+
+![Checkout](/images/sells-system-buyer-checkout.jpg)
+
+![My shopping](/images/sells-system-buyer-my-shopping.jpg)
+
+If you click the eye button you can see the details
+
+![Order Details](/images/sells-system-buyer-order-detail.jpg)
 
 ### Links to documentation and guides
 The next articles are used as guide
@@ -58,5 +104,4 @@ The next articles are used as guide
 * [Spring Security - Form Login with Database](https://www.tutorialspoint.com/spring_security/spring_security_form_login_with_database.htm)
 * [Create a Shopping Cart Web Application with Spring Boot, Hibernate](https://o7planning.org/10683/create-a-shopping-cart-web-application-with-spring-boot-hibernate)
 * [Working with Select and Option in Thymeleaf](https://www.baeldung.com/thymeleaf-select-option)
-create-a-shopping-cart-web-application-with-spring-boot-hibernate)
 * [Javax BigDecimal Validation](https://www.baeldung.com/javax-bigdecimal-validation)
